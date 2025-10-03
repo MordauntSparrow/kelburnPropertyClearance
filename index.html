@@ -192,11 +192,17 @@
     /* Mobile carousel caption fixes: avoid full-height captions and reduce padding/font-size */
     .carousel-caption.h-100 { height: auto !important; }
     @media (max-width: 576px) {
+      header.carousel {
+        min-height: 80vh; /* mobile-first smaller hero so caption remains visible */
+      }
+      header.carousel .carousel-item img { max-height: 80vh; object-fit: cover; }
       header.carousel .carousel-caption {
-        max-height: calc(100vh - var(--navbar-height) - 60px);
+        max-height: calc(80vh - var(--navbar-height) - 40px);
         padding: 0.9rem 1rem;
         width: calc(100% - 24px);
         font-size: 0.95rem;
+        bottom: 10vh; /* position from bottom so top cropping doesn't hide caption */
+        z-index: 5;
       }
       header.carousel .carousel-caption h1 { font-size: 1.6rem; line-height:1.1; }
       header.carousel .carousel-caption p.lead { font-size: 1rem; }
@@ -236,7 +242,7 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
   <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?h=900" class="d-block w-100" alt="House clearance" style="max-height:100vh;object-fit:cover;">
-      <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100">
+  <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
         <h1 class="display-3 fw-bold">Kelburn Property Clearance LTD</h1>
         <p class="lead">Safe, respectful, eco-conscious clearances</p>
         <a href="mailto:kelburnpropertyclearance@gmail.com" class="btn btn-success btn-lg">Get a Free Quote</a>
