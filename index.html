@@ -189,6 +189,20 @@
       color: inherit;
       margin-right: 0.5rem;
     }
+    /* Mobile carousel caption fixes: avoid full-height captions and reduce padding/font-size */
+    .carousel-caption.h-100 { height: auto !important; }
+    @media (max-width: 576px) {
+      header.carousel .carousel-caption {
+        max-height: calc(100vh - var(--navbar-height) - 60px);
+        padding: 0.9rem 1rem;
+        width: calc(100% - 24px);
+        font-size: 0.95rem;
+      }
+      header.carousel .carousel-caption h1 { font-size: 1.6rem; line-height:1.1; }
+      header.carousel .carousel-caption p.lead { font-size: 1rem; }
+      /* ensure caption doesn't cover the whole slide */
+      header.carousel .carousel-caption { display:block; }
+    }
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
@@ -475,6 +489,13 @@
         <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#qContact">How do I book or get a quote?</button></h2>
         <div id="qContact" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
           <div class="accordion-body">Email us at <a href="mailto:kelburnpropertyclearance@gmail.com">kelburnpropertyclearance@gmail.com</a> with photos and a brief description, or call to arrange a free on-site visit. We'll respond promptly with availability and an estimate.</div>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#qContract">What does the contract mean for items I want to keep?</button></h2>
+        <div id="qContract" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Our contract makes clear that customers are responsible for removing any items they wish to retain before signing. Once the contract is signed, ownership of the cleared items is transferred to Kelburn Property Clearance LTD and the assets are handed over to us for disposal, recycling or donation as appropriate. Please ensure you take anything you want to keep prior to signing.</div>
         </div>
       </div>
     </div>
