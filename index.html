@@ -200,10 +200,18 @@
     /* Mobile carousel caption fixes: avoid full-height captions and reduce padding/font-size */
     .carousel-caption.h-100 { height: auto !important; }
     @media (max-width: 576px) {
-      header.carousel {
-        min-height: 80vh; /* mobile-first smaller hero so caption remains visible */
+      /* Make the hero fill the mobile viewport minus the navbar so no cream gap shows */
+      header.carousel,
+      header.carousel .carousel-inner,
+      header.carousel .carousel-item {
+        height: calc(100vh - var(--navbar-height));
       }
-      header.carousel .carousel-item img { max-height: 80vh; object-fit: cover; }
+      /* Force images to fill the item (override inline max-height) */
+      header.carousel .carousel-item img {
+        height: 100% !important;
+        width: 100%;
+        object-fit: cover;
+      }
       header.carousel .carousel-caption {
         max-height: calc(80vh - var(--navbar-height) - 40px);
         padding: 0.9rem 1rem;
