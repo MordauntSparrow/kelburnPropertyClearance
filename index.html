@@ -48,12 +48,16 @@
     @media (max-width: 768px) {
       :root { --navbar-height: 70px; }
     }
+    /* Keep the caption horizontally and vertically centred inside the visible hero area
+       (the hero container is sized to exclude the fixed navbar via --navbar-height). */
     header.carousel .carousel-caption {
-      /* anchor from the bottom of the hero so it remains visually centred when the top is cropped by the navbar */
-      bottom: calc(24px + max(12px, var(--navbar-height) * 0.15));
-      top: auto;
-      transform: translateX(-50%);
+      top: 50%;
       left: 50%;
+      bottom: auto;
+      transform: translate(-50%, -50%);
+      /* ensure it doesn't grow beyond the hero area */
+      max-height: calc(100% - 40px);
+      overflow-y: auto;
     }
     nav.navbar {
       background-color: #F2EAD1 !important;
@@ -217,7 +221,9 @@
         padding: 0.9rem 1rem;
         width: calc(100% - 24px);
         font-size: 0.95rem;
-        bottom: 10vh; /* position from bottom so top cropping doesn't hide caption */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         z-index: 5;
       }
       header.carousel .carousel-caption h1 { font-size: 1.6rem; line-height:1.1; }
@@ -237,6 +243,8 @@
         left: 50%;
       }
     }
+    /* Prevent accidental horizontal scroll from oversized elements */
+    html, body { overflow-x: hidden; }
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
