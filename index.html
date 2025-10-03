@@ -230,8 +230,13 @@
       header.carousel .carousel-caption p.lead { font-size: 1rem; }
       /* ensure caption doesn't cover the whole slide */
       header.carousel .carousel-caption { display:block; }
-      /* Add extra breathing room under the hero for the following feature section on small screens */
-      #feature { padding-top: 4.5rem; }
+      /* Tighter, mobile-friendly spacing for the feature section so the heading isn't in the image/shadow */
+      #feature { padding-top: 3.5rem; }
+      /* When stacked on mobile, separate the image from the text and remove heavy shadow */
+      #feature .col-md-6 img {
+        margin-bottom: 0.75rem;
+        box-shadow: none;
+      }
     }
     /* Desktop: center caption vertically but leave it below navbar */
     @media (min-width: 577px) {
