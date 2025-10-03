@@ -57,6 +57,7 @@
     }
     nav.navbar {
       background-color: #F2EAD1 !important;
+      z-index: 1030; /* ensure navbar sits above other content */
     }
     nav .nav-link {
       color: #0D4537 !important;
@@ -64,6 +65,13 @@
     }
     nav .nav-link.active {
       text-decoration: underline;
+    }
+    .navbar-toggler {
+      border-color: rgba(13,69,55,0.12);
+      z-index: 1050;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(13,69,55,0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
     }
     header .carousel-caption {
       background: rgba(13, 69, 55, 0.6);
@@ -226,7 +234,7 @@
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
 
 <!-- Navbar -->
-<nav id="navbar" class="navbar navbar-expand-lg fixed-top shadow-sm">
+<nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm">
   <div class="container">
     <a class="navbar-brand" href="#">
       <img src="static/logo.png" alt="Kelburn Property Clearance LTD" height="100" class="d-inline-block align-text-top">
@@ -571,7 +579,10 @@
     const nav = document.getElementById('navbar');
     if (!nav) return;
     const height = nav.getBoundingClientRect().height;
-    document.documentElement.style.setProperty('--navbar-height', Math.ceil(height) + 'px');
+    const h = Math.ceil(height) + 'px';
+    document.documentElement.style.setProperty('--navbar-height', h);
+    // also add padding to body so fixed navbar won't cover top of page content
+    document.body.style.paddingTop = h;
   }
   window.addEventListener('load', updateNavbarHeightVar);
   window.addEventListener('resize', function() { setTimeout(updateNavbarHeightVar, 80); });
