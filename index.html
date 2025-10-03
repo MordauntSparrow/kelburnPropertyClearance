@@ -58,6 +58,9 @@
       /* ensure it doesn't grow beyond the hero area */
       max-height: calc(100% - 40px);
       overflow-y: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     nav.navbar {
       background-color: #F2EAD1 !important;
@@ -88,7 +91,8 @@
       transform: none; /* avoid full-height centering issues */
       left: 50%;
       transform: translateX(-50%);
-      width: min(920px, calc(100% - 40px));
+        width: min(920px, calc(100% - 40px));
+        text-align: center;
     }
     .card {
       border: none;
@@ -240,13 +244,32 @@
     }
     /* Desktop: center caption vertically but leave it below navbar */
     /* Reduce carousel height to better match card sizes and create visual balance */
-    @media (min-width: 992px) {
-      .carousel-inner { height: 520px; }
-      header.carousel .carousel-item img { height: 520px; object-fit: cover; }
+    @media (min-width: 1200px) {
+      /* Desktop large screens */
+      .carousel-inner { height: 360px; }
+      header.carousel .carousel-item img { height: 360px; object-fit: cover; }
+    }
+    @media (min-width: 992px) and (max-width: 1199px) {
+      .carousel-inner { height: 340px; }
+      header.carousel .carousel-item img { height: 340px; object-fit: cover; }
     }
     @media (min-width: 577px) and (max-width: 991px) {
-      .carousel-inner { height: 420px; }
-      header.carousel .carousel-item img { height: 420px; object-fit: cover; }
+      /* Tablet */
+      .carousel-inner { height: 300px; }
+      header.carousel .carousel-item img { height: 300px; object-fit: cover; }
+    }
+    @media (max-width: 576px) {
+      /* Mobile - fill most of viewport but a bit less */
+      header.carousel,
+      header.carousel .carousel-inner,
+      header.carousel .carousel-item {
+        height: calc(70vh - var(--navbar-height));
+      }
+      header.carousel .carousel-item img {
+        height: 100% !important;
+        width: 100%;
+        object-fit: cover;
+      }
     }
     /* Prevent accidental horizontal scroll from oversized elements */
     html, body { overflow-x: hidden; }
