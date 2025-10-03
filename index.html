@@ -239,16 +239,14 @@
       }
     }
     /* Desktop: center caption vertically but leave it below navbar */
-    @media (min-width: 577px) {
-      .carousel-inner {
-        height: calc(100vh - var(--navbar-height));
-      }
-      header.carousel .carousel-caption {
-        top: 50%;
-        bottom: auto;
-        transform: translate(-50%, -50%);
-        left: 50%;
-      }
+    /* Reduce carousel height to better match card sizes and create visual balance */
+    @media (min-width: 992px) {
+      .carousel-inner { height: 520px; }
+      header.carousel .carousel-item img { height: 520px; object-fit: cover; }
+    }
+    @media (min-width: 577px) and (max-width: 991px) {
+      .carousel-inner { height: 420px; }
+      header.carousel .carousel-item img { height: 420px; object-fit: cover; }
     }
     /* Prevent accidental horizontal scroll from oversized elements */
     html, body { overflow-x: hidden; }
