@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelburn Property Clearance LTD</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Favicon base -->
+<link rel="icon" type="image/x-icon" href="static/favicon.ico">
+
+<!-- PNG favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+
+<!-- Apple iOS -->
+<link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+
+<!-- Android/Chrome -->
+<link rel="icon" type="image/png" sizes="192x192" href="static/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="static/android-chrome-512x512.png">
+
+<!-- Manifest -->
+<link rel="manifest" href="static/site.webmanifest">
+
+<!-- Theme colors (browser UI on mobile) -->
+<meta name="theme-color" content="#0D4537">
+
+  <style>
+    body {
+      font-family: 'Public Sans', 'Inter', 'Helvetica Neue', Arial, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Segoe UI Variable', sans-serif;
+      background-color: #F2EAD1;
+      color: #0D4537;
+      scroll-behavior: smooth;
+    }
+    /* Ensure carousel caption sits below the fixed navbar so the green overlay top is visible */
+    :root {
+      --navbar-height: 100px; /* default tall navbar (logo ~100px) */
+    }
+    @media (max-width: 768px) {
+      :root { --navbar-height: 70px; }
+    }
+    header.carousel .carousel-caption {
+      /* anchor from the bottom of the hero so it remains visually centred when the top is cropped by the navbar */
+      bottom: calc(24px + max(12px, var(--navbar-height) * 0.15));
+      top: auto;
+      transform: translateX(-50%);
+      left: 50%;
+    }
+    nav.navbar {
+      background-color: #F2EAD1 !important;
+    }
+    nav .nav-link {
+      color: #0D4537 !important;
+      font-weight: 600;
+    }
+    nav .nav-link.active {
+      text-decoration: underline;
+    }
+    header .carousel-caption {
+      background: rgba(13, 69, 55, 0.6);
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      /* prevent caption from filling the whole slide and being clipped */
+  max-height: calc(100vh - var(--navbar-height) - 100px);
+      overflow-y: auto;
+      display: inline-block;
+      transform: none; /* avoid full-height centering issues */
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(920px, calc(100% - 40px));
+    }
+    .card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      height: 100%;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    }
+    .cta-btn {
+      background-color: #0D4537;
+      color: #F2EAD1;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+    footer {
+      background-color: #0D4537;
+      color: #F2EAD1;
+      padding: 20px 0;
+      text-align: center;
+    }
+    section {
+      padding: 80px 0;
+    }
+    /* Process Steps */
+    .process-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    .process-step {
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+      padding: 1rem;
+    }
+    .process-circle {
+      width: 60px;
+      height: 60px;
+      background: #ccc;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin: 0 auto 1rem auto;
+      font-size: 1.2rem;
+      transition: all 0.4s ease;
+    }
+    .process-step.active .process-circle {
+      background: #0D4537;
+      transform: scale(1.1);
+    }
+    @media(max-width:768px){
+      .process-steps { flex-direction: column; }
+    }
+    /* Testimonials */
+    .testimonial-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .testimonial-avatar {
+      width: 80px;
+      height: 80px;
+      background: #0D4537;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1rem auto;
+    }
+    /* FAQ / Accordion styling to match site palette */
+    .accordion-button {
+      background: linear-gradient(180deg, #F2EAD1 0%, #fff 100%);
+      color: #0D4537;
+      border: 1px solid rgba(13,69,55,0.12);
+      font-weight: 600;
+    }
+    .accordion-button:not(.collapsed) {
+      background: linear-gradient(180deg, #0D4537 0%, #0D4537 100%);
+      color: #F2EAD1;
+      box-shadow: none;
+    }
+    .accordion-item {
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      border: 1px solid rgba(13,69,55,0.08);
+      background: #fff;
+    }
+    .accordion-body {
+      color: #1f3b34;
+    }
+    /* Improve icon contrast inside accordion (if used) */
+    .accordion-button .bi {
+      color: inherit;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
+
+<!-- Navbar -->
+<nav id="navbar" class="navbar navbar-expand-lg fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="static/logo.png" alt="Kelburn Property Clearance LTD" height="100" class="d-inline-block align-text-top">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#promise">Our Promise</a></li>
+        <li class="nav-item"><a class="nav-link" href="#why">Why Choose Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#feature">Our Work</a></li>
+        <li class="nav-item"><a class="nav-link" href="#how">How It Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Carousel -->
+<header id="hero" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+  <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?h=900" class="d-block w-100" alt="House clearance" style="max-height:100vh;object-fit:cover;">
+      <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100">
+        <h1 class="display-3 fw-bold">Kelburn Property Clearance LTD</h1>
+        <p class="lead">Safe, respectful, eco-conscious clearances</p>
+        <a href="mailto:kelburnpropertyclearance@gmail.com" class="btn btn-success btn-lg">Get a Free Quote</a>
+      </div>
+    </div>
+    <div class="carousel-item">
+  <img src="https://images.pexels.com/photos/373548/pexels-photo-373548.jpeg?h=900" class="d-block w-100" alt="Eco friendly recycling" style="max-height:100vh;object-fit:cover;">
+      <div class="carousel-caption">
+        <h2>Respectful & Compassionate Clearances</h2>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Services -->
+<section id="services">
+  <div class="container text-center">
+    <h2 class="mb-5" data-aos="fade-up">What We Do</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 d-flex" data-aos="zoom-in" data-aos-delay="100">
+        <div class="card p-4 w-100">
+          <h5>Bereavement & Probate</h5>
+          <p>Specialists in probate and estate clearances, handled with care and discretion.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 d-flex" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card p-4 w-100">
+          <h5>End of Tenancy / Landlord</h5>
+          <p>Quick clearances to prepare properties for new tenants.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 d-flex" data-aos="zoom-in" data-aos-delay="300">
+        <div class="card p-4 w-100">
+          <h5>Garages, Lofts & Outbuildings</h5>
+          <p>From sheds to single rooms – we clear it all.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 d-flex" data-aos="zoom-in" data-aos-delay="400">
+        <div class="card p-4 w-100">
+          <h5>Full House Clearances</h5>
+          <p>From small flats to large family homes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Probate Callout -->
+<section class="py-5 bg-success text-white text-center" data-aos="fade-up">
+  <div class="container">
+    <h3 class="fw-bold">We Specialise in Probate Clearances</h3>
+    <p class="lead">Handled with compassion, respect and full understanding of the legal process.</p>
+  </div>
+</section>
+
+<!-- Our Promise -->
+<section id="promise" class="bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">Our Promise</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
+        <div class="card p-4 w-100"><h5>Respect & Discretion</h5><p>We always act with care and sensitivity.</p></div>
+      </div>
+      <div class="col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="200">
+        <div class="card p-4 w-100"><h5>Environmentally Friendly</h5><p>Reuse, recycle, donate – we minimise waste.</p></div>
+      </div>
+      <div class="col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="300">
+        <div class="card p-4 w-100"><h5>Professional & Legal</h5><p>Fully insured and licensed waste carriers.</p></div>
+      </div>
+      <div class="col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="400">
+        <div class="card p-4 w-100"><h5>Transparent Pricing</h5><p>Bespoke quotes with no hidden fees.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section id="why">
+  <div class="container text-center">
+    <h2 class="mb-5" data-aos="fade-up">Why Choose Kelburn?</h2>
+    <div class="row g-4">
+      <div class="col-md-3 d-flex" data-aos="zoom-in" data-aos-delay="100">
+        <div class="card p-4 w-100 h-100 border-success">
+          <div class="mb-3"><i class="bi bi-people display-5 text-success"></i></div>
+          <h5>Family Run</h5>
+          <p>Personal service built on trust and integrity.</p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card p-4 w-100 h-100 border-success">
+          <div class="mb-3"><i class="bi bi-geo-alt display-5 text-success"></i></div>
+          <h5>Local Experts</h5>
+          <p>Based in West Sussex with quick response times.</p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex" data-aos="zoom-in" data-aos-delay="300">
+        <div class="card p-4 w-100 h-100 border-success">
+          <div class="mb-3"><i class="bi bi-recycle display-5 text-success"></i></div>
+          <h5>Eco Conscious</h5>
+          <p>Committed to recycling, donation and reducing landfill.</p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex" data-aos="zoom-in" data-aos-delay="400">
+        <div class="card p-4 w-100 h-100 border-success">
+          <div class="mb-3"><i class="bi bi-shield-check display-5 text-success"></i></div>
+          <h5>Reliable</h5>
+          <p>Fully insured, licensed, and professional team.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Break-up Feature Image -->
+<section id="feature" class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6" data-aos="fade-right">
+        <img src="https://images.pexels.com/photos/4246233/pexels-photo-4246233.jpeg?h=400" 
+             alt="Clearance team at work" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-6" data-aos="fade-left">
+        <h3>Respectful Clearances</h3>
+        <p>We handle each clearance with care and discretion, understanding that many situations are sensitive. Our goal is to make the process as stress-free as possible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section id="how" class="bg-light">
+  <div class="container text-center">
+    <h2 class="mb-5">How It Works</h2>
+    <div class="process-steps">
+      <div class="process-step" data-step="1">
+        <div class="process-circle">1</div>
+        <p>Free consultation / quote</p>
+      </div>
+      <div class="process-step" data-step="2">
+        <div class="process-circle">2</div>
+        <p>Agree scope & price</p>
+      </div>
+      <div class="process-step" data-step="3">
+        <div class="process-circle">3</div>
+        <p>Clearance day</p>
+      </div>
+      <div class="process-step" data-step="4">
+        <div class="process-circle">4</div>
+        <p>Aftercare & tidy up</p>
+      </div>
+      <div class="process-step" data-step="5">
+        <div class="process-circle">5</div>
+        <p>Reuse & recycling</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+  <div class="container">
+    <h2 class="text-center mb-5">What Our Clients Say</h2>
+    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2"></button>
+      </div>
+      <!-- Inner -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="testimonial-card mx-auto" style="max-width:600px;">
+            <div class="testimonial-avatar"><i class="bi bi-person"></i></div>
+            <p>"The team were amazing, respectful, and left the house spotless. Highly recommended."</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="testimonial-card mx-auto" style="max-width:600px;">
+            <div class="testimonial-avatar"><i class="bi bi-person"></i></div>
+            <p>"Quick, affordable and so professional. A huge help during a difficult time."</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="testimonial-card mx-auto" style="max-width:600px;">
+            <div class="testimonial-avatar"><i class="bi bi-person"></i></div>
+            <p>"Reliable, friendly and they recycled so much – brilliant service."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <h2 class="text-center mb-5">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">Do I need to clear things out first?</button></h2>
+        <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">No — we can sort, clear and remove on your behalf. Simply set aside any items you definitely want to keep and tell our team when we arrive.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#qProbate">Probate clearances — do you work with executors and solicitors?</button></h2>
+        <div id="qProbate" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes. We regularly work with executors, probate solicitors and estate managers. We can provide inventories, photographs and disposal records on request to support the probate process.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#qEstateItems">Can you handle valuable or sentimental items?</button></h2>
+        <div id="qEstateItems" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">We take care when handling all items. If there are high-value or sentimental pieces, please inform us beforehand so we can secure them separately and document their condition.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#qHazard">Are there things you won't remove?</button></h2>
+  <div id="qHazard" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">We cannot remove hazardous materials such as asbestos, certain pesticides, or large quantities of liquids/chemicals. We also avoid specialist items like medical waste — we will advise and help arrange safe disposal where needed.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#qCost">How much will it cost and how do you charge?</button></h2>
+        <div id="qCost" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Costs depend on volume, access and any specialist handling. We offer free, no-obligation quotes — either an on-site visit or an accurate estimate from photos. We charge transparently with no hidden fees and can provide a written quote before work begins.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#qTimescale">How long does a clearance take?</button></h2>
+        <div id="qTimescale" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Small properties or single rooms are usually cleared in a few hours. A full house typically takes one to two days depending on size and access. We'll give a realistic timescale when we quote.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#qRecycling">What happens to items you remove?</button></h2>
+        <div id="qRecycling" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">We prioritise reuse and recycling. Items suitable for donation are taken to charities; recyclable materials are processed at licensed facilities; and only genuinely unusable items are sent to landfill. We can provide a basic waste transfer note on request.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#qContact">How do I book or get a quote?</button></h2>
+        <div id="qContact" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Email us at <a href="mailto:kelburnpropertyclearance@gmail.com">kelburnpropertyclearance@gmail.com</a> with photos and a brief description, or call to arrange a free on-site visit. We'll respond promptly with availability and an estimate.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="bg-light text-center">
+  <div class="container">
+    <h2>Contact Us</h2>
+    <p class="lead">We’d love to hear from you. Reach us directly at 
+      <a href="mailto:kelburnpropertyclearance@gmail.com">kelburnpropertyclearance@gmail.com</a>
+    </p>
+    <a href="mailto:kelburnpropertyclearance@gmail.com" class="btn btn-success">Email Us Now</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Kelburn Property Clearance LTD · All Rights Reserved</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true });
+
+  // Animate process steps 1→5
+  document.addEventListener("DOMContentLoaded", function() {
+    const steps = document.querySelectorAll(".process-step");
+    let i = 0;
+    function highlightNext() {
+      if (i < steps.length) {
+        steps[i].classList.add("active");
+        i++;
+        setTimeout(highlightNext, 1000);
+      }
+    }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          highlightNext();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(document.querySelector("#how"));
+  });
+</script>
+<!-- Ensure hero caption sits below the navbar by updating CSS variable with real height -->
+<script>
+  function updateNavbarHeightVar() {
+    const nav = document.getElementById('navbar');
+    if (!nav) return;
+    const height = nav.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--navbar-height', Math.ceil(height) + 'px');
+  }
+  window.addEventListener('load', updateNavbarHeightVar);
+  window.addEventListener('resize', function() { setTimeout(updateNavbarHeightVar, 80); });
+  // In case content changes after load
+  new MutationObserver(() => updateNavbarHeightVar()).observe(document.body, { childList: true, subtree: true });
+</script>
+</body>
+</html>
