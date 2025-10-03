@@ -252,6 +252,25 @@
     }
     /* Prevent accidental horizontal scroll from oversized elements */
     html, body { overflow-x: hidden; }
+    /* Compact testimonial indicators (dots) */
+    .testimonial-indicators {
+      bottom: -10px; /* pull them up slightly */
+      height: 18px;
+    }
+    .testimonial-indicators [data-bs-target] {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(13,69,55,0.25);
+      border: none;
+      margin: 0 6px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: none;
+    }
+    .testimonial-indicators [data-bs-target].active {
+      background: #0D4537;
+      transform: scale(1.15);
+    }
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
@@ -450,10 +469,10 @@
     <h2 class="text-center mb-5">What Our Clients Say</h2>
     <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
       <!-- Indicators -->
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2"></button>
+      <div class="carousel-indicators testimonial-indicators">
+        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
       <!-- Inner -->
       <div class="carousel-inner">
